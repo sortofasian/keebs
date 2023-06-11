@@ -1,0 +1,118 @@
+/*
+ * Copyright (c) 2021 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+
+#define DFLT 0
+#define NUMB 1
+#define FUNC 2
+#define CTRL 3
+
+/ {
+    chosen {
+        zmk,battery = &vbatt;
+    };
+
+    vbatt: vbatt {
+        compatible = "zmk,battery-nrf-vddh";
+        label = "VBATT";
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        base {
+            bindings = <
+    &kp ESC    &kp Q      &kp W      &kp E      &kp R      &kp T      &kp Y      &kp U      &kp I      &kp O     &kp P     &kp BSPC
+    &kp TAB    &kp A      &kp S      &kp D      &kp F      &kp G      &kp H      &kp J      &kp K      &kp L     &kp SEMI  &kp ENTER
+    &kp LSHIFT &kp Z      &kp X      &kp C      &kp V      &kp B      &kp N      &kp M      &kp COMMA  &kp DOT   &kp FSLH  &kp RSHIFT
+    &kp LCTRL  &kp LGUI   &kp LALT   &kp LCTRL  &mo NUMB   &kp SPACE  &kp SPACE  &mo FUNC   &desk1     &desk1    &kp LGUI  &kp LCTRL
+    >;
+        };
+
+        numbers {
+            bindings = <
+    &kp TILDE  &kp EXCL   &kp AT     &kp HASH   &kp DLLR   &kp PRCNT  &kp CARET  &kp AMPS   &kp STAR   &kp UNDER  &kp PLUS   &kp PIPE
+    &kp GRAVE  &kp N1     &kp N2     &kp N3     &kp N4     &kp N5     &kp N6     &kp N7     &kp N8     &kp N9     &kp N0     &kp APOS
+    &trans     &kp DQT    &kp APOS   &kp LBRC   &kp LBKT   &kp LPAR   &kp RPAR   &kp RBKT   &kp RBRC   &kp MINUS  &kp EQUAL  &kp BSLH
+    &trans     &trans     &trans     &trans     &trans     &trans     &trans     &mo CTRL   &trans     &trans     &trans     &trans
+            >;
+        };
+
+        functions {
+            bindings = <
+    &kp F1     &kp F2     &kp F3     &kp F4     &kp F5     &kp F6     &kp F7     &kp F8     &kp F9     &kp F10    &kp F11    &kp F12
+    &kp PSCRN  &trans     &trans     &trans     &trans     &trans     &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT  &trans     &kp DEL
+    &trans     &trans     &trans     &trans     &trans     &trans     &trans     &trans     &trans     &trans     &trans     &trans
+    &trans     &trans     &trans     &trans     &mo CTRL   &trans     &trans     &trans     &trans     &trans     &trans     &trans
+            >;
+        };
+
+        control {
+            bindings = <
+    &trans       &mvdesk1     &mvdesk2     &mvdesk3     &mvdesk4     &mvdesk5     &mvdesk6     &mvdesk7     &mvdesk8     &mvdesk9     &mvdesk0     &trans
+    &trans       &desk1       &desk2       &desk3       &desk4       &desk5       &desk6       &desk7       &desk8       &desk9       &desk0       &trans
+    &trans       &trans       &trans       &trans       &kp C_PREV   &kp C_VOL_DN &kp C_VOL_UP &kp C_NEXT   &trans       &trans       &trans       &bt BT_CLR
+    &trans       &trans       &trans       &trans       &trans       &kp C_PLAY   &kp C_PLAY   &trans       &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3
+            >;
+        };
+    };
+
+    macros {
+        desk1: desk1 { label = "MACRO_desk1"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&macro_press &kp LGUI>,<&macro_tap &kp N1>,<&macro_release &kp LGUI>; };
+        mvdesk1: mvdesk1 {
+            label = "MACRO_mvdesk1"; compatible = "zmk,behavior-macro"; #binding-cells = <0>;
+            bindings = <&macro_press &kp LSHIFT>,<&macro_press &kp LGUI>,<&macro_tap &kp N1>,<&macro_release &kp LGUI>,<&macro_release &kp LSHIFT>;
+        };
+        desk2: desk2 { label = "MACRO_desk2"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&macro_press &kp LGUI>,<&macro_tap &kp N2>,<&macro_release &kp LGUI>; };
+        mvdesk2: mvdesk2 {
+            label = "MACRO_mvdesk2"; compatible = "zmk,behavior-macro"; #binding-cells = <0>;
+            bindings = <&macro_press &kp LSHIFT>,<&macro_press &kp LGUI>,<&macro_tap &kp N2>,<&macro_release &kp LGUI>,<&macro_release &kp LSHIFT>;
+        };
+        desk3: desk3 { label = "MACRO_desk3"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&macro_press &kp LGUI>,<&macro_tap &kp N3>,<&macro_release &kp LGUI>; };
+        mvdesk3: mvdesk3 {
+            label = "MACRO_mvdesk3"; compatible = "zmk,behavior-macro"; #binding-cells = <0>;
+            bindings = <&macro_press &kp LSHIFT>,<&macro_press &kp LGUI>,<&macro_tap &kp N3>,<&macro_release &kp LGUI>,<&macro_release &kp LSHIFT>;
+        };
+        desk4: desk4 { label = "MACRO_desk4"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&macro_press &kp LGUI>,<&macro_tap &kp N4>,<&macro_release &kp LGUI>; };
+        mvdesk4: mvdesk4 {
+            label = "MACRO_mvdesk4"; compatible = "zmk,behavior-macro"; #binding-cells = <0>;
+            bindings = <&macro_press &kp LSHIFT>,<&macro_press &kp LGUI>,<&macro_tap &kp N4>,<&macro_release &kp LGUI>,<&macro_release &kp LSHIFT>;
+        };
+        desk5: desk5 { label = "MACRO_desk5"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&macro_press &kp LGUI>,<&macro_tap &kp N5>,<&macro_release &kp LGUI>; };
+        mvdesk5: mvdesk5 {
+            label = "MACRO_mvdesk5"; compatible = "zmk,behavior-macro"; #binding-cells = <0>;
+            bindings = <&macro_press &kp LSHIFT>,<&macro_press &kp LGUI>,<&macro_tap &kp N5>,<&macro_release &kp LGUI>,<&macro_release &kp LSHIFT>;
+        };
+        desk6: desk6 { label = "MACRO_desk6"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&macro_press &kp LGUI>,<&macro_tap &kp N6>,<&macro_release &kp LGUI>; };
+        mvdesk6: mvdesk6 {
+            label = "MACRO_mvdesk6"; compatible = "zmk,behavior-macro"; #binding-cells = <0>;
+            bindings = <&macro_press &kp LSHIFT>,<&macro_press &kp LGUI>,<&macro_tap &kp N6>,<&macro_release &kp LGUI>,<&macro_release &kp LSHIFT>;
+        };
+        desk7: desk7 { label = "MACRO_desk7"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&macro_press &kp LGUI>,<&macro_tap &kp N7>,<&macro_release &kp LGUI>; };
+        mvdesk7: mvdesk7 {
+            label = "MACRO_mvdesk7"; compatible = "zmk,behavior-macro"; #binding-cells = <0>;
+            bindings = <&macro_press &kp LSHIFT>,<&macro_press &kp LGUI>,<&macro_tap &kp N7>,<&macro_release &kp LGUI>,<&macro_release &kp LSHIFT>;
+        };
+        desk8: desk8 { label = "MACRO_desk8"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&macro_press &kp LGUI>,<&macro_tap &kp N8>,<&macro_release &kp LGUI>; };
+        mvdesk8: mvdesk8 {
+            label = "MACRO_mvdesk8"; compatible = "zmk,behavior-macro"; #binding-cells = <0>;
+            bindings = <&macro_press &kp LSHIFT>,<&macro_press &kp LGUI>,<&macro_tap &kp N8>,<&macro_release &kp LGUI>,<&macro_release &kp LSHIFT>;
+        };
+        desk9: desk9 { label = "MACRO_desk9"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&macro_press &kp LGUI>,<&macro_tap &kp N9>,<&macro_release &kp LGUI>; };
+        mvdesk9: mvdesk9 {
+            label = "MACRO_mvdesk9"; compatible = "zmk,behavior-macro"; #binding-cells = <0>;
+            bindings = <&macro_press &kp LSHIFT>,<&macro_press &kp LGUI>,<&macro_tap &kp N9>,<&macro_release &kp LGUI>,<&macro_release &kp LSHIFT>;
+        };
+        desk0: desk0 { label = "MACRO_desk0"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&macro_press &kp LGUI>,<&macro_tap &kp N0>,<&macro_release &kp LGUI>; };
+        mvdesk0: mvdesk0 {
+            label = "MACRO_mvdesk0"; compatible = "zmk,behavior-macro"; #binding-cells = <0>;
+            bindings = <&macro_press &kp LSHIFT>,<&macro_press &kp LGUI>,<&macro_tap &kp N0>,<&macro_release &kp LGUI>,<&macro_release &kp LSHIFT>;
+        };
+    };
+};
