@@ -108,12 +108,12 @@ trantransfunctions {
         desk9: desk9 { label = "MACRO_desk9"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&macro_press &kp LGUI>,<&macro_tap &kp N9>,<&macro_release &kp LGUI>; };
         mvdesk9: mvdesk9 {
             label = "MACRO_mvdesk9"; compatible = "zmk,behavior-macro"; #binding-cells = <0>;
-            bindings = <&macro_press &kp LSHIFT>,<&macro_press &kp LGUI>,<&macro_tap &kp N9>,<&macro_release &kp LGUI>,<&macro_release &kp LSHIFT>;
+            bindings = <&macro_press &kp LSHIFT>,<&macro_press &kp LGUI>,<&macro_tap &kp MINUS>,<&macro_release &kp LGUI>,<&macro_release &kp LSHIFT>;
         };
         desk0: desk0 { label = "MACRO_desk0"; compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&macro_press &kp LGUI>,<&macro_tap &kp N0>,<&macro_release &kp LGUI>; };
         mvdesk0: mvdesk0 {
             label = "MACRO_mvdesk0"; compatible = "zmk,behavior-macro"; #binding-cells = <0>;
-            bindings = <&macro_press &kp LSHIFT>,<&macro_press &kp LGUI>,<&macro_tap &kp N0>,<&macro_release &kp LGUI>,<&macro_release &kp LSHIFT>;
+            bindings = <&macro_press &kp LSHIFT>,<&macro_press &kp LGUI>,<&macro_tap &kp EQUAL>,<&macro_release &kp LGUI>,<&macro_release &kp LSHIFT>;
         };
     };
 };
